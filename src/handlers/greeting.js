@@ -170,6 +170,7 @@ async function sendWelcome(member, inviterData = {}) {
   );
 
   const verify = await verifyChannel.safeSend({
+    content: "<@&1161570587626438676>",
     embeds: [
       {
         color: 0xdddddd,
@@ -178,17 +179,17 @@ async function sendWelcome(member, inviterData = {}) {
         },
         thumbnail: member.avatarURL(),
         description:
-          "If the GrowID is the GrowID of one of the City Guild members then\npress Member, otherwise leave it.",
+          "If the GrowID is the GrowID of one of the City Guild members then\npress \`🌆\`, otherwise leave it.",
         fields: [
           {
             name: "Requested by",
             value: `<@!${member.id}>`,
-            inline: true
+            inline: true,
           },
           {
             name: "GrowID",
             value: growid,
-            inline: true
+            inline: true,
           },
         ],
         timestamp: new Date().toISOString(),
@@ -212,6 +213,7 @@ async function sendWelcome(member, inviterData = {}) {
   await verifyInteraction.reply({ content: `<@!${member.user.id}> already comfirmed as <@&1161571138393088000>.`, ephemeral: true });
   await member.roles.add("1161571138393088000").catch((err) => {});
   await member.roles.remove("1161575433704325251").catch((err) => {});
+  await member.setNickname(growid).catch((err) => {});
 }
 
 /**
@@ -237,4 +239,6 @@ module.exports = {
   buildGreeting,
   sendWelcome,
   sendFarewell,
+
+
 };
