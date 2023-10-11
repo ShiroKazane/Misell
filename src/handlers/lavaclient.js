@@ -31,6 +31,10 @@ module.exports = (client) => {
 
   lavaclient.on("nodeDisconnect", (node, event) => {
     client.logger.log(`Node "${node.id}" disconnected`);
+
+    setTimeout(() => {
+      node.connect();
+    }, 5000)
   });
 
   lavaclient.on("nodeError", (node, error) => {
