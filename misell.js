@@ -45,3 +45,12 @@ process.on("unhandledRejection", (err) => client.logger.error(`Unhandled excepti
   // start the client
   await client.login(process.env.BOT_TOKEN);
 })();
+
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.sendStatus("200");
+});
+
+app.listen("3000");
