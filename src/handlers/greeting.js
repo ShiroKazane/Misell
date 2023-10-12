@@ -130,9 +130,11 @@ async function sendWelcome(member, inviterData = {}) {
       filter: (i) => i.customId === "welcome" && i.member.id === member.id && i.message.id === sentMsg.id,
       time: 1_200_000,
     })
-    .catch((e) => {});
+    .catch((e) => {
+      member.kick("Still not verified after 20 minutes");
+    });
 
-  if (!btnInteraction) return member.kick("Still not verified after 20 minutes");
+  if (!btnInteraction) return;
 
   await btnInteraction.showModal(
     new ModalBuilder({
@@ -155,9 +157,11 @@ async function sendWelcome(member, inviterData = {}) {
       time: 120_000,
       filter: (m) => m.customId === "welcome-modal" && m.member.id === member.id && m.message.id === sentMsg.id,
     })
-    .catch((ex) => {});
+    .catch((ex) => {
+      member.kick("Still not verified after 2 minutes clicking `Verify` button");
+    });
 
-  if (!modal) return member.kick("Still not verified after 2 minutes clicking \`Verify\` button");
+  if (!modal) return;
 
   await modal.reply({ content: "Please wait for a review from our server administrator.", ephemeral: true });
 
@@ -205,9 +209,11 @@ async function sendWelcome(member, inviterData = {}) {
       filter: (m) => m.customId === "member-confirm",
       time: 1_200_000,
     })
-    .catch((e) => {});
+    .catch((e) => {
+      member.setNickname(growid).catch((err) => {});
+    });
 
-  if (!verifyInteraction) return member.setNickname(growid).catch((err) => {});
+  if (!verifyInteraction) return;
 
   await verifyInteraction.reply({ content: `<@!${member.user.id}> already confirmed as <@&1161571138393088000>.`, ephemeral: true });
   await member.roles.add("1161571138393088000").catch((err) => {});
@@ -238,6 +244,9 @@ module.exports = {
   buildGreeting,
   sendWelcome,
   sendFarewell,
+
+
+
 
 
 
