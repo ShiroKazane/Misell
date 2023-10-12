@@ -170,7 +170,7 @@ async function sendWelcome(member, inviterData = {}) {
   );
 
   const verify = await verifyChannel.safeSend({
-    content: "<@&1161570587626438676>",
+    content: "<@&11615711383930880001161571138393088000>",
     embeds: [
       {
         color: 0xdddddd,
@@ -178,8 +178,7 @@ async function sendWelcome(member, inviterData = {}) {
           name: "Verification Request",
         },
         thumbnail: member.avatarURL(),
-        description:
-          "If the GrowID is the GrowID of one of the City Guild members then\npress 🏙️, otherwise leave it.",
+        description: "If the GrowID is the GrowID of one of the City Guild members then\npress 🏙️, otherwise leave it.",
         fields: [
           {
             name: "Requested by",
@@ -239,6 +238,7 @@ module.exports = {
   buildGreeting,
   sendWelcome,
   sendFarewell,
+
 
 
 
