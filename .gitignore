@@ -4,3 +4,6 @@ node_modules/
 *.log
 *.tar.gz
 .env
+.cache/replit/__replit_disk_meta.json
+.cache/replit/nix/env.json
+.upm/store.json
