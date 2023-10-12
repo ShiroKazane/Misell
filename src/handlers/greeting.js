@@ -152,12 +152,12 @@ async function sendWelcome(member, inviterData = {}) {
 
   const modal = await btnInteraction
     .awaitModalSubmit({
-      time: 1_200_000,
+      time: 120_000,
       filter: (m) => m.customId === "welcome-modal" && m.member.id === member.id && m.message.id === sentMsg.id,
     })
     .catch((ex) => {});
 
-  if (!modal) return member.kick("Still not verified after 20 minutes");
+  if (!modal) return member.kick("Still not verified after 2 minutes clicking \`Verify\` button");
 
   await modal.reply({ content: "Please wait for a review from our server administrator.", ephemeral: true });
 
@@ -238,6 +238,7 @@ module.exports = {
   buildGreeting,
   sendWelcome,
   sendFarewell,
+
 
 
 
