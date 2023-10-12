@@ -166,7 +166,7 @@ async function sendWelcome(member, inviterData = {}) {
   const verifyChannel = member.guild.channels.cache.get("1161593330128396328")
 
   const verifyButton = new ActionRowBuilder().addComponents(
-    new ButtonBuilder().setCustomId("member-confirm").setEmoji("🏙️").setStyle(ButtonStyle.Secondary)
+    new ButtonBuilder().setCustomId("member-confirm").setLabel("🌆").setStyle(ButtonStyle.Secondary)
   );
 
   const verify = await verifyChannel.safeSend({
@@ -178,7 +178,7 @@ async function sendWelcome(member, inviterData = {}) {
           name: "Verification Request",
         },
         thumbnail: member.avatarURL(),
-        description: "If the GrowID is the GrowID of one of the City Guild members then\npress 🏙️, otherwise leave it.",
+        description: "If the GrowID is the GrowID of one of the City Guild members then\npress `🌆`, otherwise leave it.",
         fields: [
           {
             name: "Requested by",
