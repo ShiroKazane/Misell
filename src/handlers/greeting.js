@@ -208,7 +208,7 @@ async function sendWelcome(member, inviterData = {}) {
     })
     .catch((e) => {});
 
-  if (!verifyInteraction) return;
+  if (!verifyInteraction) return member.setNickname(growid).catch((err) => {});
 
   await verifyInteraction.reply({ content: `<@!${member.user.id}> already comfirmed as <@&1161571138393088000>.`, ephemeral: true });
   await member.roles.add("1161571138393088000").catch((err) => {});
