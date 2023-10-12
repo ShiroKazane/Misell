@@ -128,11 +128,11 @@ async function sendWelcome(member, inviterData = {}) {
     .awaitMessageComponent({
       componentType: ComponentType.Button,
       filter: (i) => i.customId === "welcome" && i.member.id === member.id && i.message.id === sentMsg.id,
-      time: 3_600_000,
+      time: 1_200_000,
     })
     .catch((e) => {});
 
-  if (!btnInteraction) return member.kick("Still not verified after 1 hour");
+  if (!btnInteraction) return member.kick("Still not verified after 20 minutes");
 
   await btnInteraction.showModal(
     new ModalBuilder({
@@ -152,12 +152,12 @@ async function sendWelcome(member, inviterData = {}) {
 
   const modal = await btnInteraction
     .awaitModalSubmit({
-      time: 3_600_000,
+      time: 1_200_000,
       filter: (m) => m.customId === "welcome-modal" && m.member.id === member.id && m.message.id === sentMsg.id,
     })
     .catch((ex) => {});
 
-  if (!modal) return member.kick("Still not verified after 1 hour");
+  if (!modal) return member.kick("Still not verified after 20 minutes");
 
   await modal.reply({ content: "Please wait for a review from our server administrator.", ephemeral: true });
 
@@ -166,7 +166,7 @@ async function sendWelcome(member, inviterData = {}) {
   const verifyChannel = member.guild.channels.cache.get("1161593330128396328")
 
   const verifyButton = new ActionRowBuilder().addComponents(
-    new ButtonBuilder().setCustomId("member-confirm").setLabel("🌆").setStyle(ButtonStyle.Secondary),
+    new ButtonBuilder().setCustomId("member-confirm").setEmoji("🌆").setStyle(ButtonStyle.Secondary),
   );
 
   const verify = await verifyChannel.safeSend({
@@ -204,7 +204,7 @@ async function sendWelcome(member, inviterData = {}) {
     .awaitMessageComponent({
       componentType: ComponentType.Button,
       filter: (m) => m.customId === "member-confirm",
-      time: 3_600_000,
+      time: 1_200_000,
     })
     .catch((e) => {});
 
@@ -239,6 +239,7 @@ module.exports = {
   buildGreeting,
   sendWelcome,
   sendFarewell,
+
 
 
 };
