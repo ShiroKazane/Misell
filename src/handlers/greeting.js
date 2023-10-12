@@ -170,7 +170,7 @@ async function sendWelcome(member, inviterData = {}) {
   );
 
   const verify = await verifyChannel.safeSend({
-    content: "<@&11615711383930880001161571138393088000>",
+    content: "<@&1161571138393088000>",
     embeds: [
       {
         color: 0xdddddd,
