@@ -209,7 +209,7 @@ async function sendWelcome(member, inviterData = {}) {
 
   if (!verifyInteraction) return member.setNickname(growid).catch((err) => {});
 
-  await verifyInteraction.reply({ content: `<@!${member.user.id}> already comfirmed as <@&1161571138393088000>.`, ephemeral: true });
+  await verifyInteraction.reply({ content: `<@!${member.user.id}> already confirmed as <@&1161571138393088000>.`, ephemeral: true });
   await member.roles.add("1161571138393088000").catch((err) => {});
   await member.roles.remove("1161575433704325251").catch((err) => {});
   await member.setNickname(growid).catch((err) => {});
